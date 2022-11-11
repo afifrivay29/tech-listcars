@@ -1,6 +1,6 @@
 import React from "react";
 import BootstrapTable from "react-bootstrap-table-next";
-import { Button, Container, Row, Col } from "reactstrap";
+import { Button, Container, Row, Col, Spinner } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faInfo,
@@ -80,7 +80,8 @@ const defaultSorted = [
 
 const mapStateToProps = (state) => {
   return {
-    users: state.users.users,
+    getCatsList: state.cats.getCatsList,
+    errorCatsList: state.cats.errorCatsList,
   };
 };
 
@@ -88,37 +89,50 @@ const TableComponent = (props) => {
   return (
     <div>
       <Container>
-        <ToolkitProvider
-          bootstrap4
-          keyField="id"
-          data={props.users}
-          columns={columns}
-          defaultSorted={defaultSorted}
-          search
-        >
-          {(props) => (
-            <div>
-              <Row>
-                <Col>
-                  <Link to="/create">
-                    <Button color="dark" style={{ marginRight: "8px" }}>
-                      <FontAwesomeIcon icon={faUserPlus} /> Create
-                    </Button>
-                  </Link>
-                </Col>
-                <Col>
-                  <div style={{ float: "right", marginBottom: "10px" }}>
-                    <SearchBar {...props.searchProps} placeholder="Search..." />
-                  </div>
-                </Col>
-              </Row>
-              <BootstrapTable
-                {...props.baseProps}
-                pagination={paginationFactory()}
-              />
-            </div>
-          )}
-        </ToolkitProvider>
+        {props.getCatsList ? (
+          <ToolkitProvider
+            bootstrap4
+            keyField="id"
+            data={props.getCatsList}
+            columns={columns}
+            defaultSorted={defaultSorted}
+            search
+          >
+            {(props) => (
+              <div>
+                <Row>
+                  <Col>
+                    <Link to="/create">
+                      <Button color="dark" style={{ marginRight: "8px" }}>
+                        <FontAwesomeIcon icon={faUserPlus} /> Create
+                      </Button>
+                    </Link>
+                  </Col>
+                  <Col>
+                    <div style={{ float: "right", marginBottom: "10px" }}>
+                      <SearchBar
+                        {...props.searchProps}
+                        placeholder="Search..."
+                      />
+                    </div>
+                  </Col>
+                </Row>
+                <BootstrapTable
+                  {...props.baseProps}
+                  pagination={paginationFactory()}
+                />
+              </div>
+            )}
+          </ToolkitProvider>
+        ) : (
+          <div className="text-center">
+            {props.errorCatsList ? (
+              <h4>{props.errorCatsList}</h4>
+            ) : (
+              <Spinner color="dark" />
+            )}
+          </div>
+        )}
       </Container>
     </div>
   );

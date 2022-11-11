@@ -1,7 +1,12 @@
 import React, { Component } from "react";
 import TableComponent from "../components/TableComponent";
+import { connect } from "react-redux";
+import { getCatsList } from "../actions/catAction";
 
-export default class HomePage extends Component {
+class HomePage extends Component {
+  componentDidMount() {
+    this.props.dispatch(getCatsList());
+  }
   render() {
     return (
       <div>
@@ -11,3 +16,5 @@ export default class HomePage extends Component {
     );
   }
 }
+
+export default connect()(HomePage);

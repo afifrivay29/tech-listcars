@@ -42,24 +42,22 @@ const columns = [
     },
   },
   {
+    dataField: "temperament",
+    text: "Temperament",
+    sort: true,
+    headerStyle: () => {
+      return { width: "20%" };
+    },
+  },
+  {
     dataField: "link",
     text: "Action",
     formatter: (rowContect, row) => {
       return (
         <div>
           <Link to={"detail/" + row.id}>
-            <Button color="dark" style={{ marginRight: "8px" }}>
+            <Button color="primary" style={{ marginRight: "8px" }}>
               <FontAwesomeIcon icon={faInfo} /> Detail
-            </Button>
-          </Link>
-          <Link to={"edit/" + row.id}>
-            <Button color="dark" style={{ marginRight: "8px" }}>
-              <FontAwesomeIcon icon={faEdit} /> Edit
-            </Button>
-          </Link>
-          <Link>
-            <Button color="dark" style={{ marginRight: "8px" }}>
-              <FontAwesomeIcon icon={faTrash} /> Delete
             </Button>
           </Link>
         </div>
@@ -100,23 +98,9 @@ const TableComponent = (props) => {
           >
             {(props) => (
               <div>
-                <Row>
-                  <Col>
-                    <Link to="/create">
-                      <Button color="dark" style={{ marginRight: "8px" }}>
-                        <FontAwesomeIcon icon={faUserPlus} /> Create
-                      </Button>
-                    </Link>
-                  </Col>
-                  <Col>
-                    <div style={{ float: "right", marginBottom: "10px" }}>
-                      <SearchBar
-                        {...props.searchProps}
-                        placeholder="Search..."
-                      />
-                    </div>
-                  </Col>
-                </Row>
+                <div style={{ float: "right", marginBottom: "10px" }}>
+                  <SearchBar {...props.searchProps} placeholder="Search..." />
+                </div>
                 <BootstrapTable
                   {...props.baseProps}
                   pagination={paginationFactory()}

@@ -7,7 +7,6 @@ import {
   Nav,
   NavItem,
   NavLink,
-  NavbarText,
 } from "reactstrap";
 
 function NavbarComponent(props) {
@@ -26,12 +25,9 @@ function NavbarComponent(props) {
               <NavLink href="/">Home</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="https://github.com/reactstrap/reactstrap">
-                About
-              </NavLink>
+              <NavLink href="#">About</NavLink>
             </NavItem>
           </Nav>
-          <NavbarText>Admin</NavbarText>
         </Collapse>
       </Navbar>
     </div>

@@ -28,30 +28,3 @@ export const getCatsList = () => {
       });
   };
 };
-
-// export const getCatsDetail = () => {
-//   return (dispatch) => {
-//     axios
-//       .get("https://api.thecatapi.com/v1/breeds")
-//       .then(function (response) {
-//         dispatch({
-//           type: GET_CATS_DETAIL,
-//           payload: {
-//             data: response.data,
-//             errorMessage: false,
-//           },
-//         });
-//         console.log(response);
-//       })
-//       .catch(function (error) {
-//         dispatch({
-//           type: GET_CATS_DETAIL,
-//           payload: {
-//             data: false,
-//             errorMessage: error.message,
-//           },
-//         });
-//         console.log(error);
-//       });
-//   };
-// };

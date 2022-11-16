@@ -1,6 +1,15 @@
 import React from "react";
 import BootstrapTable from "react-bootstrap-table-next";
-import { Button, Container, Row, Col, Spinner } from "reactstrap";
+import {
+  UncontrolledCollapse,
+  Button,
+  CardBody,
+  Card,
+  Container,
+  Row,
+  Col,
+  Spinner,
+} from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faInfo,
@@ -50,16 +59,20 @@ const columns = [
     },
   },
   {
-    dataField: "link",
+    dataField: "action",
     text: "Action",
-    formatter: (rowContect, row) => {
+    formatter: (text, record) => {
       return (
         <div>
-          <Link to={"detail/" + row.id}>
-            <Button color="primary" style={{ marginRight: "8px" }}>
-              <FontAwesomeIcon icon={faInfo} /> Detail
-            </Button>
-          </Link>
+          <Button color="primary" id="toggler" style={{ marginBottom: "1rem" }}>
+            Details
+          </Button>
+          <UncontrolledCollapse toggler="#toggler">
+            <Card>
+              <CardBody>Deskripsi :</CardBody>
+              <CardBody>{record.description}</CardBody>
+            </Card>
+          </UncontrolledCollapse>
         </div>
       );
     },
@@ -97,7 +110,7 @@ const TableComponent = (props) => {
             search
           >
             {(props) => (
-              <div>
+              <Container>
                 <div style={{ float: "right", marginBottom: "10px" }}>
                   <SearchBar {...props.searchProps} placeholder="Search..." />
                 </div>
@@ -105,7 +118,7 @@ const TableComponent = (props) => {
                   {...props.baseProps}
                   pagination={paginationFactory()}
                 />
-              </div>
+              </Container>
             )}
           </ToolkitProvider>
         ) : (

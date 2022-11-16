@@ -14,20 +14,6 @@ const cats = (state = initialState, action) => {
         errorCatsList: action.payload.errorMessage,
       };
 
-    // case POST_CAT_CREATE:
-    //   return {
-    //     ...state,
-    //     getResponDataCat: action.payload.data,
-    //     errorResponDataCat: action.payload.errorMessage,
-    //   };
-
-    // case PUT_CAT_EDIT:
-    //   return {
-    //     ...state,
-    //     getResponDataUser: action.payload.data,
-    //     errorResponDataUser: action.payload.errorMessage,
-    //   };
-
     default:
       return state;
   }
